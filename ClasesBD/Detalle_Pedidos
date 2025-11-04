@@ -1,0 +1,7 @@
+package EstructuraBD;
+
+public class Detalle_Pedidos {
+	private String detalle_id, pedido_id, producto_id, observaciones, estado_item;
+	private short cantidad;
+	
+}
