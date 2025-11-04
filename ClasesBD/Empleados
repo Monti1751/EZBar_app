@@ -1,0 +1,7 @@
+package EstructuraBD;
+
+public class Empleados {
+	private String empleado_id, nombre, apellido, dni, email, puesto, password, fecha_creacion;
+	private long telefono;
+	private boolean activo;
+}
