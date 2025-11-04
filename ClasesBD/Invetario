@@ -1,0 +1,6 @@
+package EstructuraBD;
+
+public class Inventario {
+	private String movimiento_id, producto_id, tipo_movimiento, fecha_movimiento, empleado_id, observaciones, proveedor;
+	private short cantidad;
+}
