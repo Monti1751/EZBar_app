@@ -1,20 +1,20 @@
 package EstructuraBD;
 
 public class Empleados {
-	private String empleado_id, nombre, apellido, dni, email, puesto, password, fecha_creacion;
-	private long telefono;
+	private String empleado_id, nombre_empleado, apellido_empleado, dni, email_empleado, puesto, password, fecha_creacion;
+	private long telefono_empleado;
 	private boolean activo;
 	
 	public Empleados(String empleado_id, String nombre, String apellido, String dni, String email, String puesto, String password, String fecha_creacion, long telefono, boolean activo) {
 		this.empleado_id = empleado_id;
-		this.nombre = nombre;
-		this.apellido = apellido;
+		this.nombre_empleado = nombre;
+		this.apellido_empleado = apellido;
 		this.dni = dni;
-		this.email = email;
+		this.email_empleado = email;
 		this.puesto = puesto;
 		this.password = password;
 		this.fecha_creacion = fecha_creacion;
-		this.telefono = telefono;
+		this.telefono_empleado = telefono;
 		this.activo = activo;
 	}
 	
@@ -26,20 +26,20 @@ public class Empleados {
 		this.dni = dni;
 	}
 	
-	public long getTelefono() {
-		return telefono;
+	public long getTelefonoE() {
+		return telefono_empleado;
 	}
 	
-	public void setTelefono(long telefono) {
-		this.telefono = telefono;
+	public void setTelefonoE(long telefono) {
+		this.telefono_empleado = telefono;
 	}
 	
-	public String getNombre() {
-		return nombre;
+	public String getNombreE() {
+		return nombre_empleado;
 	}
 	
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreE(String nombre) {
+		this.nombre_empleado = nombre;
 	}
 	
 	public String getPassword() {
@@ -66,11 +66,11 @@ public class Empleados {
 	}
 	
 	public String getEmail() {
-		return email;
+		return email_empleado;
 	}
 	
 	public void setEmail(String email) {
-		this.email = email;
+		this.email_empleado = email;
 	}
 	
 	public String getFecha_creacion() {
@@ -81,12 +81,12 @@ public class Empleados {
 		this.fecha_creacion = fecha_creacion;
 	}
 	
-	public String getApellido() {
-		return apellido;
+	public String getApellidoE() {
+		return apellido_empleado;
 	}
 	
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setApellidoE(String apellido) {
+		this.apellido_empleado = apellido;
 	}
 	
 	public boolean isActivo() {
