@@ -10,6 +10,7 @@ class SettingsMenu extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // Encabezado del menú
             Container(
               padding: const EdgeInsets.all(20),
               color: const Color(0xFF7BA238),
@@ -22,6 +23,7 @@ class SettingsMenu extends StatelessWidget {
               ),
             ),
 
+            // Lista de opciones
             Expanded(
               child: ListView(
                 children: [
@@ -60,6 +62,17 @@ class SettingsMenu extends StatelessWidget {
                     text: "Editar inventario",
                     onTap: () {},
                   ),
+
+                  // ---------------------------------------------------------
+                  // Nueva sección: Ajustes visuales
+                  // ---------------------------------------------------------
+                  _menuItem(
+                    icon: Icons.brush,
+                    text: "Ajustes visuales",
+                    onTap: () {
+                      // Aquí le pondrás la pantalla visual más adelante
+                    },
+                  ),
                 ],
               ),
             ),
@@ -69,6 +82,7 @@ class SettingsMenu extends StatelessWidget {
     );
   }
 
+  // Constructor de ítems del menú
   Widget _menuItem({
     required IconData icon,
     required String text,
@@ -82,3 +96,4 @@ class SettingsMenu extends StatelessWidget {
     );
   }
 }
+
