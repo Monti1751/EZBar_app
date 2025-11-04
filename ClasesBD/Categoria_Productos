@@ -1,0 +1,6 @@
+package EstructuraBD;
+
+public class Categoria_Productos {
+	private String categoria_id, nombre;
+	private boolean activa;
+}
