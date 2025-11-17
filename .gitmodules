@@ -1,0 +1,6 @@
+[submodule "EZBar_Backend"]
+	path = EZBar_Backend
+	url = https://github.com/Monti1751/EZBar_Backend.git
+[submodule "EZBar_Frontend"]
+	path = EZBar_Frontend
+	url = https://github.com/Monti1751/EZBar_Frontend.git
