@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./EZBar_Frontend/logo_bueno.PNG" alt="EzBar logo" width="200" />
+  <img src="https://raw.githubusercontent.com/Monti1751/EZBar_Frontend/276e500ff0acafbd51ccb77c555db25a7351f76e/logo_bueno.PNG" alt="EzBar Logo" width="200"/>
 </p>
 
 <p align="center">
