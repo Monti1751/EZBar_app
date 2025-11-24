@@ -8,5 +8,5 @@
   <img src="https://img.shields.io/badge/Java-ED8B00?logo=java&logoColor=white" />
   <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white" />
   <img src="https://img.shields.io/badge/Azure_DevOps-0078D7?logo=azuredevops&logoColor=white" />
-  <img src="https://img.shields.io/badge/Version-Beta-orange" />
+  <img src="https://img.shields.io/badge/Version-Alpha-orange" />
 </p>
