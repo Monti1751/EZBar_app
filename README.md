@@ -42,4 +42,41 @@ CREATE DATABASE ezbar;
 CREATE USER 'ezbar'@'localhost' IDENTIFIED BY 'tu_password';
 GRANT ALL PRIVILEGES ON ezbar.* TO 'ezbar'@'localhost';
 FLUSH PRIVILEGES;
+```
+## Arquitectura del Proyecto
+
+EZBar se compone de dos módulos principales: Frontend y Backend, comunicándose con una base de datos MariaDB.
+
+   +-------------------+         +-----------------------+         +----------------+
+   |    Flutter App    | <-----> |     Backend Java      | <-----> |    MariaDB     |
+   |   (Frontend)      |  HTTP   |   (Lógica del ERP)    |  JDBC   | (Base de Datos)|
+   +-------------------+         +-----------------------+         +----------------+
+
+### Estructura General
+
+/EZBar
+│
+├── EZBar_Frontend/      # Aplicación Flutter (UI y lógica de cliente)
+│
+├── EZBar_Backend/       # Backend en Java (servicios, endpoints, conexión DB)
+│
+└── docs/                # Documentación del proyecto
+
+### Descripción de los Módulos
+
+Frontend (Flutter)
+- Interfaz de usuario.
+- Navegación.
+- Peticiones HTTP hacia el backend.
+
+Backend (Java Puro)
+- Autenticación.
+- Gestión de zonas.
+- Gestión de mesas.
+- Gestión de productos.
+- Conexión con MariaDB mediante JDBC.
+
+Base de Datos (MariaDB)
+- Almacenamiento de todas las entidades del ERP.
+
 
