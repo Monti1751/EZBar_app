@@ -24,7 +24,7 @@ El proyecto EZBar está dividido en dos módulos principales:
 
 ### Frontend
 - Flutter SDK  
-- Android Studio o VS Code  
+- VS Code  
 - Dart SDK  
 
 ### Backend
