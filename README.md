@@ -53,12 +53,12 @@ EZBar se compone de dos módulos principales: Frontend y Backend, comunicándose
 ### Estructura General
 
 /EZBar
-│
-├── EZBar_Frontend/      # Aplicación Flutter (UI y lógica de cliente)
-│
-├── EZBar_Backend/       # Backend en Java (servicios, endpoints, conexión DB)
-│
-└── docs/                # Documentación del proyecto
+- │
+- ├── EZBar_Frontend/      # Aplicación Flutter (UI y lógica de cliente)
+- │
+- ├── EZBar_Backend/       # Backend en Java (servicios, endpoints, conexión DB)
+- │
+- └── docs/                # Documentación del proyecto
 
 ### Descripción de los Módulos
 
