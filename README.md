@@ -10,3 +10,36 @@
   <img src="https://img.shields.io/badge/Azure_DevOps-0078D7?logo=azuredevops&logoColor=white" />
   <img src="https://img.shields.io/badge/Version-Alpha-orange" />
 </p>
+
+## Instalación y Ejecución del Proyecto
+
+El proyecto EZBar está dividido en dos módulos principales:
+
+- **Frontend — Flutter**  
+- **Backend — Java puro + MariaDB**  
+
+---
+
+## Requisitos Previos
+
+### Frontend
+- Flutter SDK  
+- Android Studio o VS Code  
+- Dart SDK  
+
+### Backend
+- Java JDK 17+  
+- MariaDB local  
+- JDBC Driver `mariadb-java-client`  
+
+---
+
+## Configuración de la Base de Datos (MariaDB)
+
+```sql
+CREATE DATABASE ezbar;
+
+CREATE USER 'ezbar'@'localhost' IDENTIFIED BY 'tu_password';
+GRANT ALL PRIVILEGES ON ezbar.* TO 'ezbar'@'localhost';
+FLUSH PRIVILEGES;
+
