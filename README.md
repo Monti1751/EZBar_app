@@ -47,10 +47,10 @@ FLUSH PRIVILEGES;
 
 EZBar se compone de dos módulos principales: Frontend y Backend, comunicándose con una base de datos MariaDB.
 
-   +-------------------+         +-----------------------+         +----------------+
+  
    |    Flutter App    | <-----> |     Backend Java      | <-----> |    MariaDB     |
    |   (Frontend)      |  HTTP   |   (Lógica del ERP)    |  JDBC   | (Base de Datos)|
-   +-------------------+         +-----------------------+         +----------------+
+
 
 ### Estructura General
 
