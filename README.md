@@ -76,5 +76,92 @@ Backend (Java Puro)
 
 Base de Datos (MariaDB)
 - Almacenamiento de todas las entidades del ERP.
+  
+## Instalación y Configuración
+
+A continuación se detallan los pasos necesarios para ejecutar EZBar tanto en el **Frontend (Flutter)** como en el **Backend (Java)**, junto con la configuración de MariaDB.
+
+---
+
+### 1. Requisitos Previos
+
+* **Flutter 3.x**
+* **Java 17 o superior**
+* **MariaDB 10.x o superior**
+* **IDE recomendado:**
+    * Frontend → Android Studio o VS Code
+    * Backend → IntelliJ IDEA o Eclipse
+
+---
+
+### 2. Configuración de la Base de Datos (MariaDB)
+
+1.  **Crear la base de datos:**
+    ```sql
+    CREATE DATABASE ezbar;
+    ```
+2.  **Crear usuario y permisos:**
+    ```sql
+    CREATE USER 'ezbar'@'localhost' IDENTIFIED BY 'tu_contraseña';
+    GRANT ALL PRIVILEGES ON ezbar.* TO 'ezbar'@'localhost';
+    FLUSH PRIVILEGES;
+    ```
+3.  **Importar las tablas del proyecto (si existe un script SQL):**
+    ```sql
+    SOURCE ruta_al_script/ezbar_schema.sql;
+    ```
+
+---
+
+### 3. Configuración del Backend (Java)
+
+1.  **Clonar o abrir el proyecto:**
+    ```bash
+    cd /EZBar/EZBar_Backend
+    ```
+2.  **Configurar el archivo de conexión JDBC** (ejemplo: `config.properties`):
+    ```properties
+    db.url=jdbc:mariadb://localhost:3306/ezbar
+    db.user=ezbar
+    db.password=tu_contraseña
+    ```
+3.  **Compilar y ejecutar:**
+    ```bash
+    mvn clean package
+    java -jar target/EZBar_Backend.jar
+    ```
+
+---
+
+### 4. Configuración del Frontend (Flutter)
+
+1.  **Abrir el proyecto:**
+    ```bash
+    cd /EZBar/EZBar_Frontend
+    ```
+2.  **Actualizar el endpoint del backend** en el archivo de configuración:
+    ```dart
+    const String apiUrl = "http://localhost:8080";
+    ```
+3.  **Instalar dependencias:**
+    ```bash
+    flutter pub get
+    ```
+4.  **Ejecutar la aplicación:**
+    ```bash
+    flutter run
+    ```
+
+---
+
+### 5. Estructura del Entorno de Desarrollo
+
+Una vez ejecutados los pasos anteriores, el entorno debería estar configurado de la siguiente manera:
+
+* **Backend activo en:** `http://localhost:8080`
+* **Flutter** ejecutándose en dispositivo/emulador.
+* **MariaDB** funcionando en local con el usuario configurado.
+
+Con esto, el proyecto queda funcionando en local.
 
 
