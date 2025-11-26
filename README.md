@@ -12,7 +12,7 @@
 </p>
 
 ---
-## 📑 Índice
+## Índice
 
 1. [Arquitectura del Proyecto](#arquitectura-del-proyecto)
 2. [Instalación y Configuración](#instalación-y-configuración)
@@ -20,33 +20,98 @@
 4. [Estado del Proyecto](#estado-del-proyecto)
 5. [Autores](#autores)
 
----
-## Arquitectura del Proyecto
+## 1. Arquitectura del Proyecto
 
-EZBar es un ERP orientado a la gestión de bares y restaurantes.  
-La estructura del proyecto está dividida en dos módulos principales: **Frontend (Flutter)** y **Backend (Java)**, conectados a una base de datos **MariaDB**.
+EZBar se organiza en una arquitectura **cliente-servidor** compuesta por tres elementos principales:
 
-   | Flutter App (Frontend) | <----> (HTTP) |  Backend Java (Lógica del ERP)  | <----> (JDBC) | MariaDB (Base de Datos) |
-   
-### Estructura General
-/EZBar
--│
--├── EZBar_Frontend/ # Aplicación Flutter (UI y lógica del cliente)
--├── EZBar_Backend/ # Backend Java (servicios, endpoints, conexión a DB)
--└── docs/ # Documentación del proyecto
+- **Backend (Java):** Encargado de la lógica de negocio, la gestión de pedidos y la conexión con la base de datos.  
+  👉 [Ver documentación del Backend](./EZBar_Backend/README.md)
 
-### Descripción de los Módulos
+- **Frontend (Flutter):** Aplicación móvil utilizada por camareros y personal de hostelería para la gestión diaria.  
+  👉 [Ver documentación del Frontend](./EZBar_Frontend/README.md)
 
-- **Frontend (Flutter)**  
-  Se encarga de la interfaz de usuario, navegación y comunicación HTTP con el backend.
+- **Base de Datos (MariaDB):** Almacena la información de productos, mesas, pedidos y usuarios.
 
-- **Backend (Java)**  
-  Contiene la lógica del ERP:
-  - Gestión de mesas y zonas  
-  - Gestión de productos e inventario  
-  - Sistema de pedidos  
-  - Autenticación de usuarios  
-  - Conexión con la base de datos mediante JDBC
+La comunicación entre el **Frontend** y el **Backend** se realiza mediante **servicios REST**, garantizando una integración sencilla y escalable.
 
-- **Base de Datos (MariaDB)**  
-  Almacena la información esencial del sistema: usuarios, roles, productos, mesas, zonas, pedidos, etc.
+## 2. Instalación y Configuración
+
+### Requisitos Previos
+
+Asegúrate de tener instalado:
+
+- **Flutter 3.x**
+- **Java 17 o superior**
+- **MariaDB 10.x o superior**
+- IDE recomendado: Android Studio/VS Code (Frontend), IntelliJ IDEA/Eclipse (Backend)
+
+### Configuración de la Base de Datos
+
+```sql
+CREATE DATABASE ezbar;
+
+CREATE USER 'ezbar'@'localhost' IDENTIFIED BY 'tu_contraseña';
+GRANT ALL PRIVILEGES ON ezbar.* TO 'ezbar'@'localhost';
+FLUSH PRIVILEGES;
+```
+### Configuración del Proyecto
+
+Para más detalles sobre la instalación y ejecución de cada módulo, consulta sus respectivos README:
+
+- **Backend:** [EZBar_Backend](https://github.com/Monti1751/EZBar_Backend/tree/87085fbad2fe236fadd91ced6935b192882cd938)
+- **Frontend:** [EZBar_Frontend](https://github.com/Monti1751/EZBar_Frontend/tree/276e500ff0acafbd51ccb77c555db25a7351f76e)
+## 3. Funcionamiento y Uso de la Aplicación
+
+EZBar está diseñado para optimizar el flujo de trabajo en hostelería, permitiendo a los camareros gestionar pedidos, mesas y zonas de manera eficiente.
+
+### Roles de Usuario
+
+- **Administración (Backend):** Gestión de productos, precios y zonas directamente desde la base de datos o herramientas de gestión.  
+- **Camarero (Frontend):** Uso diario de la aplicación móvil para la toma y gestión de pedidos.
+
+### Funcionalidades Clave
+
+- **Gestión de Zonas y Mesas:** Visualización clara de todas las zonas del local (ej. Terraza, Barra, Comedor) y el estado de cada mesa (ocupada, libre, pendiente de pago).  
+- **Creación y Edición de Pedidos:** Capacidad para crear un pedido, añadir productos al ticket, modificar cantidades y añadir notas especiales antes de enviarlo a cocina/barra.  
+- **Cierre de Mesa:** Permite la liquidación del pedido y el marcado de la mesa como libre.
+
+### Interfaz de Usuario y Conexión
+
+Una vez que el **Backend (Java)** está activo en `http://localhost:8080`, la aplicación **Frontend (Flutter)** establece la conexión al iniciar.
+
+| Pantalla        | Descripción                                               | Acciones Principales                          |
+|-----------------|-----------------------------------------------------------|-----------------------------------------------|
+| **Inicio/Login** | Autenticación de usuarios con roles definidos.            | `Login` / `Selección de Turno`                |
+| **Mapa de Mesas** | Vista principal que muestra el estado en tiempo real.    | `Seleccionar Mesa` / `Cambiar Zona`           |
+| **Toma de Pedido** | Interfaz para seleccionar productos y configurar tickets.| `Añadir Producto` / `Enviar a Cocina` / `Cerrar Cuenta` |
+
+> **Nota:** Si el Backend no está corriendo, la aplicación Frontend mostrará un error de conexión y no permitirá la autenticación.
+## 4. Estado del Proyecto
+
+El proyecto **EZBar** se encuentra actualmente en **versión Alpha**, lo que significa que está en fase de pruebas iniciales.  
+Durante esta etapa se están validando las funcionalidades principales:
+
+- Conexión entre **Frontend (Flutter)** y **Backend (Java)** mediante servicios REST.  
+- Gestión básica de zonas, mesas y pedidos.  
+- Integración con la base de datos **MariaDB**.  
+
+> Próximas fases incluirán mejoras de rendimiento, ampliación de funcionalidades y preparación para una versión Beta.
+## 5. Autores
+
+Este proyecto ha sido desarrollado por:
+
+- **Miguel Tomás**  
+  - [Tommy23-has](https://github.com/Tommy23-has)  
+  - [ismigue23](https://github.com/ismigue23)
+
+- **Francisco Montesinos**  
+  - [FranMontesinos](https://github.com/FranMontesinos)  
+  - [Monti1751](https://github.com/Monti1751)
+
+- **Miguel Jiménez**  
+  - [MiguelJimenezSerrano](https://github.com/MiguelJimenezSerrano)
+
+- **Miguel Duque**  
+  - [El-Mig](https://github.com/El-Mig)  
+  - [Mig56](https://github.com/Mig56)
+
