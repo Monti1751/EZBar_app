@@ -1,79 +1,111 @@
-# EZ BAR
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Monti1751/EZBar_Frontend/MJS/logo_bueno_fondo.png" alt="Logo" width="200"/>
+</p>
 
-## Descripción general
-EZ BAR es una aplicación diseñada para facilitar la gestión de negocios gastronómicos de pequeña y mediana escala, como bares y restaurantes locales.  
-Su objetivo principal es optimizar las operaciones diarias, incluyendo el control de productos, la gestión de cobros y la organización del servicio, mediante una interfaz sencilla y accesible.
+<p align="center">
+  <img src="https://img.shields.io/badge/Flutter-02569B?logo=flutter&logoColor=white" />
+  <img src="https://img.shields.io/badge/MariaDB-003545?logo=mariadb&logoColor=white" />
+  <img src="https://img.shields.io/badge/Java-ED8B00?logo=java&logoColor=white" />
+  <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white" />
+  <img src="https://img.shields.io/badge/Azure_DevOps-0078D7?logo=azuredevops&logoColor=white" />
+  <img src="https://img.shields.io/badge/Version-Alpha-orange" />
+</p>
 
-## Objetivos
-**Objetivo general:**
-- Digitalizar y simplificar la gestión interna de bares y restaurantes.
+---
 
-**Objetivos específicos:**
-- Controlar y actualizar el inventario en tiempo real.
-- Registrar ventas y cobros de forma rápida y segura.
-- Gestionar usuarios y roles (administrador, camarero, cajero).
-- Ofrecer una interfaz intuitiva y adaptada al entorno hostelero.
+## Instalación y Configuración
 
-## Alcance del proyecto
-La versión inicial de EZ BAR incluye:
-- Módulo de gestión de productos e inventario.
-- Módulo de cobros y pagos.
-- Organización del servicio (mesas y pedidos).
-- Control de usuarios y permisos.
+A continuación se detallan los pasos necesarios para ejecutar EZBar en un entorno de desarrollo local.
 
-No se incluye en esta primera versión:
-- Informes avanzados de ventas.
-- Integración con TPV externos.
-- Funcionalidades web.
+### 1. Requisitos Previos
 
-## Requisitos funcionales
-- RF1: Registro, modificación y eliminación de productos.
-- RF2: Actualización de inventario en tiempo real.
-- RF3: Registro de cobros y pagos con diferentes métodos de pago.
-- RF4: Gestión de mesas y pedidos.
-- RF5: Creación y administración de roles de usuario (administrador, camarero, cajero).
+Asegúrate de tener instalado el siguiente software:
 
-## Requisitos no funcionales
-- RNF1: La aplicación debe cargar en menos de 3 segundos.
-- RNF2: Interfaz intuitiva, con navegación sencilla y adaptable a distintos tamaños de pantalla.
-- RNF3: Capacidad de funcionar parcialmente sin conexión a internet.
-- RNF4: Garantizar la seguridad y privacidad de los datos de los usuarios.
-- RNF5: Código mantenible y documentado.
+* **Flutter 3.x**
+* **Java 17 o superior**
+* **MariaDB 10.x o superior**
+* **IDE recomendado:** Android Studio/VS Code (Frontend), IntelliJ IDEA/Eclipse (Backend).
 
-## Tecnologías utilizadas
-- **Lenguajes:** Java, Flutter, SQL
-- **Base de datos:** PostgreSQL
-- **Metodología:** Scrum
+### 2. Configuración de la Base de Datos (MariaDB)
 
-## Planificación del proyecto
-| Fase | Descripción | 
-|------|--------------|
-| Análisis y planificación | Definición de requisitos y estructura del proyecto
-| Diseño | Estructura de la base de datos, algoritmo y diseño UI/UX
-| Desarrollo | Implementación del frontend y backend
-| Pruebas y control de calidad | Verificación del funcionamiento y corrección de errores 
-| Lanzamiento | Publicación de la primera versión 
+1.  **Crear la base de datos y el usuario:**
+    ```sql
+    CREATE DATABASE ezbar;
 
-## Metodología de trabajo
-El desarrollo de EZ BAR se realiza bajo la metodología ágil **Scrum**, estructurada en sprints semanales que permiten una entrega continua de funcionalidades, retroalimentación frecuente y mejora iterativa del producto.
+    CREATE USER 'ezbar'@'localhost' IDENTIFIED BY 'tu_contraseña';
+    GRANT ALL PRIVILEGES ON ezbar.* TO 'ezbar'@'localhost';
+    FLUSH PRIVILEGES;
+    ```
+2.  **Importar las tablas del proyecto** (si existe un script SQL con el esquema):
+    ```sql
+    SOURCE ruta_al_script/ezbar_schema.sql;
+    ```
 
-## Product Backlog (historias de usuario)
-1. Como administrador, quiero registrar y actualizar productos para tener el inventario al día.
-2. Como camarero, quiero registrar pedidos y asignarlos a mesas para agilizar el servicio.
-3. Como cajero, quiero registrar cobros y generar tickets para llevar un control de caja.
-4. Como propietario, quiero ver un resumen diario de ventas para conocer el rendimiento del negocio.
+### 3. Configuración del Backend (Java)
 
-## Plan de calidad y pruebas
-**Tipos de pruebas:**
-- Pruebas unitarias: Validación de cada módulo principal.
-- Pruebas de integración: Comunicación entre frontend, backend y base de datos.
-- Pruebas de usabilidad: Test con usuarios reales.
-- Pruebas de rendimiento: Tiempo de carga y estabilidad del sistema.
+1.  **Clonar y configurar la conexión JDBC** (ejemplo: `config.properties`):
+    ```bash
+    cd /EZBar/EZBar_Backend
+    ```
+    ```properties
+    db.url=jdbc:mariadb://localhost:3306/ezbar
+    db.user=ezbar
+    db.password=tu_contraseña
+    ```
+2.  **Compilar y ejecutar el servidor:**
+    ```bash
+    mvn clean package
+    java -jar target/EZBar_Backend.jar
+    ```
+    *El Backend estará disponible en: `http://localhost:8080`*
 
-**Criterios de calidad:**
-- Código legible y documentado.
-- Sin errores críticos.
-- Interfaz clara y usable.
-- Cumplimiento de los requisitos funcionales y no funcionales definidos.
+### 4. Configuración del Frontend (Flutter)
 
+1.  **Navegar al proyecto:**
+    ```bash
+    cd /EZBar/EZBar_Frontend
+    ```
+2.  **Verificar el endpoint del backend** en el archivo de configuración (ejemplo: `config.dart`):
+    ```dart
+    const String apiUrl = "http://localhost:8080";
+    ```
+3.  **Instalar dependencias y ejecutar la aplicación:**
+    ```bash
+    flutter pub get
+    flutter run
+    ```
+    *La aplicación se ejecutará en el dispositivo o emulador configurado.*
+    ---
 
+## Funcionamiento y Uso de la Aplicación
+
+EZBar está diseñado para optimizar el flujo de trabajo en la hostelería, permitiendo a los camareros gestionar pedidos, mesas y zonas de manera eficiente a través de la interfaz de Flutter.
+
+---
+
+### 1. Flujo Operacional (Roles de Usuario)
+
+El sistema se enfoca en dos flujos principales:
+
+1.  **Administración (Backend):** Gestión de productos, precios y zonas, a través de la configuración directa en la base de datos o herramientas de gestión.
+2.  **Camarero (Frontend):** Uso diario de la aplicación móvil para la toma y gestión de pedidos.
+
+### 2. Características Clave del Frontend
+
+La aplicación móvil (Flutter) centraliza las siguientes funcionalidades:
+
+* **Gestión de Zonas y Mesas:** Visualización clara de todas las zonas del local (ej. Terraza, Barra, Comedor) y el estado de cada mesa (ocupada, libre, pendiente de pago).
+* **Creación y Edición de Pedidos:** Capacidad para crear un pedido, añadir productos al ticket, modificar cantidades y añadir notas especiales antes de enviarlo a cocina/barra.
+* **Cierre de Mesa:** Permite la liquidación del pedido y el marcado de la mesa como libre.
+
+### 3. Interfaz de Usuario y Conexión
+
+Una vez que el **Backend (Java)** está activo en `http://localhost:8080`, la aplicación Flutter establece la conexión al iniciar.
+
+| Pantalla | Descripción | Acciones Principales |
+| :--- | :--- | :--- |
+| **Inicio/Login** | Autenticación de usuarios con roles definidos (ej. Camarero, Gerente). | `Login` / `Selección de Turno` |
+| **Mapa de Mesas** | Vista principal que muestra el estado en tiempo real de las zonas. | `Seleccionar Mesa` / `Cambiar Zona` |
+| **Toma de Pedido** | Interfaz para seleccionar productos del menú y configurar el ticket. | `Añadir Producto` / `Enviar a Cocina` / `Cerrar Cuenta` |
+
+> **Nota de Conexión:** Si el Backend no está corriendo, la aplicación Frontend mostrará un error de conexión y no permitirá la autenticación. Asegúrese de que el JAR de Java está en ejecución.
