@@ -27,14 +27,15 @@
 EZBar se organiza en una arquitectura **cliente-servidor** compuesta por tres elementos principales:
 
 - **Backend (Java):** Encargado de la lógica de negocio, la gestión de pedidos y la conexión con la base de datos.  
-  [Ver documentación del Backend](./EZBar_Backend/README.md)
+  [Ver documentación del Backend](https://github.com/Monti1751/EZBar_Backend/tree/87085fbad2fe236fadd91ced6935b192882cd938)
 
 - **Frontend (Flutter):** Aplicación móvil utilizada por camareros y personal de hostelería para la gestión diaria.  
-  [Ver documentación del Frontend](./EZBar_Frontend/README.md)
+  [Ver documentación del Frontend](https://github.com/Monti1751/EZBar_Frontend/tree/276e500ff0acafbd51ccb77c555db25a7351f76e)
 
 - **Base de Datos (MariaDB):** Almacena la información de productos, mesas, pedidos y usuarios.
 
 La comunicación entre el **Frontend** y el **Backend** se realiza mediante **servicios REST**, garantizando una integración sencilla y escalable.
+
 
 ## 2. Instalación y Configuración
 
@@ -62,9 +63,6 @@ Para más detalles sobre la instalación y ejecución de cada módulo, consulta 
 
 - **Backend:** [EZBar_Backend](https://github.com/Monti1751/EZBar_Backend/tree/87085fbad2fe236fadd91ced6935b192882cd938)
 - **Frontend:** [EZBar_Frontend](https://github.com/Monti1751/EZBar_Frontend/tree/276e500ff0acafbd51ccb77c555db25a7351f76e)
-## 3. Funcionamiento y Uso de la Aplicación
-
-EZBar está diseñado para optimizar el flujo de trabajo en hostelería, permitiendo a los camareros gestionar pedidos, mesas y zonas de manera eficiente.
 
 ### Roles de Usuario
 
