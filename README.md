@@ -25,10 +25,10 @@
 EZBar se organiza en una arquitectura **cliente-servidor** compuesta por tres elementos principales:
 
 - **Backend (Java):** Encargado de la lógica de negocio, la gestión de pedidos y la conexión con la base de datos.  
-  👉 [Ver documentación del Backend](./EZBar_Backend/README.md)
+  [Ver documentación del Backend](./EZBar_Backend/README.md)
 
 - **Frontend (Flutter):** Aplicación móvil utilizada por camareros y personal de hostelería para la gestión diaria.  
-  👉 [Ver documentación del Frontend](./EZBar_Frontend/README.md)
+  [Ver documentación del Frontend](./EZBar_Frontend/README.md)
 
 - **Base de Datos (MariaDB):** Almacena la información de productos, mesas, pedidos y usuarios.
 
