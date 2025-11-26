@@ -14,11 +14,13 @@
 ---
 ## Índice
 
-1. [Arquitectura del Proyecto](#arquitectura-del-proyecto)
-2. [Instalación y Configuración](#instalación-y-configuración)
-3. [Funcionamiento y Uso de la Aplicación](#funcionamiento-y-uso-de-la-aplicación)
-4. [Estado del Proyecto](#estado-del-proyecto)
-5. [Autores](#autores)
+# Índice
+1. [Arquitectura del Proyecto](#1-arquitectura-del-proyecto)  
+2. [Instalación y Configuración](#2-instalación-y-configuración)  
+3. [Funcionamiento y Uso de la Aplicación](#3-funcionamiento-y-uso-de-la-aplicación)  
+4. [Estado del Proyecto](#4-estado-del-proyecto)  
+5. [Autores](#5-autores)  
+
 
 ## 1. Arquitectura del Proyecto
 
