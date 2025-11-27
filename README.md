@@ -83,6 +83,49 @@ Una vez que el **Backend (Java)** está activo en `http://localhost:8080`, la ap
 | **Toma de Pedido** | Interfaz para seleccionar productos y configurar tickets.| `Añadir Producto` / `Enviar a Cocina` / `Cerrar Cuenta` |
 
 > **Nota:** Si el Backend no está corriendo, la aplicación Frontend mostrará un error de conexión y no permitirá la autenticación.
+
+## 3. Funcionamiento y Uso de la Aplicación
+
+EZBar está diseñado para agilizar el trabajo en hostelería, permitiendo gestionar mesas, pedidos y zonas de forma rápida e intuitiva.
+
+### Flujo General de Uso
+
+1. **Inicio de sesión:**  
+   El usuario accede con sus credenciales y selecciona su turno.
+
+2. **Selección de zona:**  
+   El camarero elige la zona del local (Terraza, Barra, Comedor, etc.).
+
+3. **Gestión de mesas:**  
+   Desde el mapa visual puede ver el estado de cada mesa:
+   - Libre  
+   - Ocupada  
+   - Pendiente de pago  
+
+4. **Creación de pedidos:**  
+   Al seleccionar una mesa, el camarero puede:
+   - Añadir productos  
+   - Modificar cantidades  
+   - Añadir notas especiales  
+   - Enviar el pedido a cocina/barra  
+
+5. **Cierre de mesa:**  
+   Una vez finalizado el servicio, se procede al cobro y la mesa vuelve a estado libre.
+
+### Comunicación con el Sistema
+
+- El **Frontend (Flutter)** envía las acciones del usuario a la **API en Node.js**.  
+- La API procesa la petición y se comunica con el **Backend en Java**, que gestiona la lógica y la base de datos.  
+- La respuesta vuelve al Frontend, actualizando el estado de la aplicación en tiempo real.
+
+### Objetivo del Funcionamiento
+
+El sistema está diseñado para:
+- Reducir tiempos de espera.  
+- Minimizar errores en pedidos.  
+- Facilitar el control de mesas y zonas.  
+- Mejorar la coordinación entre camareros y cocina/barra.
+
 ## 4. Estado del Proyecto
 
 El proyecto **EZBar** se encuentra actualmente en **versión Alpha**, lo que significa que está en fase de pruebas iniciales.  
