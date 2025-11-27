@@ -13,8 +13,6 @@
 
 ---
 ## Índice
-
-# Índice
 1. [Arquitectura del Proyecto](#1-arquitectura-del-proyecto)  
 2. [Instalación y Configuración](#2-instalación-y-configuración)  
 3. [Funcionamiento y Uso de la Aplicación](#3-funcionamiento-y-uso-de-la-aplicación)  
