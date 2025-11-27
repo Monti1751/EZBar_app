@@ -34,7 +34,7 @@ EZBar se organiza en una arquitectura **cliente-servidor** compuesta por tres el
 
 - **Base de Datos (MariaDB):** Almacena la información de productos, mesas, pedidos y usuarios.
 
-La comunicación entre el **Frontend** y el **Backend** se realiza mediante **servicios REST**, garantizando una integración sencilla y escalable.
+La comunicación entre el Frontend y el Backend se realiza a través de una API desarrollada en **Node.js**, que actúa como capa intermedia entre la aplicación móvil y el servidor principal en **Java**. Esta arquitectura permite una integración flexible, modular y fácilmente escalable.
 
 ## 2. Instalación y Configuración
 
