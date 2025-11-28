@@ -140,12 +140,10 @@ Durante esta etapa se están validando las funcionalidades principales:
 
 Este proyecto ha sido desarrollado por:
 
-- **Miguel Tomás**  
-  - [Tommy23-has](https://github.com/Tommy23-has)  
+- **Miguel Tomás**   
   - [ismigue23](https://github.com/ismigue23)
 
-- **Francisco Montesinos**  
-  - [FranMontesinos](https://github.com/FranMontesinos)  
+- **Francisco Montesinos**    
   - [Monti1751](https://github.com/Monti1751)
 
 - **Miguel Jiménez**  
@@ -153,5 +151,4 @@ Este proyecto ha sido desarrollado por:
 
 - **Miguel Duque**  
   - [El-Mig](https://github.com/El-Mig)  
-  - [Mig56](https://github.com/Mig56)
 
