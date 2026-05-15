@@ -2,141 +2,590 @@
   <img src="https://raw.githubusercontent.com/Monti1751/EZBar_Frontend/MJS/logo_bueno_fondo.png" alt="Logo EZBar" width="200"/>
 </p>
 
+<h1 align="center">EZBar - Sistema de Gestión de Hostelería</h1>
+
+<p align="center">
+  Una solución integral para la gestión de pedidos, mesas y operaciones diarias en locales de hostelería
+</p>
+
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-02569B?logo=flutter&logoColor=white" />
-  <img src="https://img.shields.io/badge/MariaDB-003545?logo=mariadb&logoColor=white" />
+  <img src="https://img.shields.io/badge/C%23%20.NET-239120?logo=.net&logoColor=white" />
   <img src="https://img.shields.io/badge/Java-ED8B00?logo=java&logoColor=white" />
+  <img src="https://img.shields.io/badge/MariaDB-003545?logo=mariadb&logoColor=white" />
+  <img src="https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white" />
   <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white" />
   <img src="https://img.shields.io/badge/Azure_DevOps-0078D7?logo=azuredevops&logoColor=white" />
   <img src="https://img.shields.io/badge/Versión-Alpha-orange" />
 </p>
 
 ---
-## Índice
-1. [Arquitectura del Proyecto](#1-arquitectura-del-proyecto)  
-2. [Instalación y Configuración](#2-instalación-y-configuración)  
-3. [Funcionamiento y Uso de la Aplicación](#3-funcionamiento-y-uso-de-la-aplicación)  
-4. [Estado del Proyecto](#4-estado-del-proyecto)  
-5. [Autores](#5-autores)  
+
+## 📋 Índice
+1. [Descripción General](#descripción-general)
+2. [Arquitectura del Proyecto](#1-arquitectura-del-proyecto)  
+3. [Estructura de Componentes](#2-estructura-de-componentes)
+4. [Instalación y Configuración](#3-instalación-y-configuración)  
+5. [Funcionamiento y Uso de la Aplicación](#4-funcionamiento-y-uso-de-la-aplicación)  
+6. [Estado del Proyecto](#5-estado-del-proyecto)  
+7. [Autores](#6-autores)
+
+---
+
+## Descripción General
+
+**EZBar** es una solución completa de software para la gestión moderna de establecimientos de hostelería. El sistema permite optimizar procesos de toma de pedidos, gestión de mesas, control de zonas y operaciones administrativas a través de múltiples interfaces especializadas.
+
+La plataforma está diseñada con una arquitectura escalable y modular que separa las responsabilidades entre tres aplicaciones principales, cada una adaptada a su función específica.  
 
 
 ## 1. Arquitectura del Proyecto
 
-EZBar se organiza en una arquitectura **cliente-servidor** compuesta por tres elementos principales:
+EZBar implementa una **arquitectura cliente-servidor de tres capas** que separa las responsabilidades entre múltiples aplicaciones especializadas:
 
-- **Backend (Java):** Encargado de la lógica de negocio, la gestión de pedidos y la conexión con la base de datos.  
-  [Ver documentación del Backend](https://github.com/Monti1751/EZBar_Backend/tree/main)
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     CAPA DE PRESENTACIÓN                         │
+├─────────────────────────────────────────────────────────────────┤
+│  Frontend Flutter      │  App Escritorio (.NET WPF)              │
+│  (Móvil - Camareros)   │  (Desktop - Gestión)                    │
+└──────────────┬─────────┴──────────────┬──────────────────────────┘
+               │                        │
+               └────────────┬───────────┘
+                            │ HTTP/REST API
+        ┌───────────────────▼─────────────────────┐
+        │   CAPA DE LÓGICA DE NEGOCIO             │
+        ├─────────────────────────────────────────┤
+        │  Backend Java (Spring Boot)             │
+        │  - Gestión de Pedidos                   │
+        │  - Autenticación                        │
+        │  - Lógica de Negocio                    │
+        └────────────────────┬────────────────────┘
+                             │ JDBC/SQL
+        ┌────────────────────▼─────────────────┐
+        │   CAPA DE DATOS                      │
+        ├──────────────────────────────────────┤
+        │  Base de Datos MariaDB                │
+        │  - Productos, Mesas, Pedidos, Usuarios│
+        └──────────────────────────────────────┘
+```
 
-- **Frontend (Flutter):** Aplicación móvil utilizada por camareros y personal de hostelería para la gestión diaria.  
-  [Ver documentación del Frontend](https://github.com/Monti1751/EZBar_Frontend/tree/main)
+### 📱 **Componentes Principales**
 
-- **Base de Datos (MariaDB):** Almacena la información de productos, mesas, pedidos y usuarios.
+#### 1. **Frontend Móvil (Flutter)**
+- **Propósito:** Aplicación móvil para camareros y personal de hostelería
+- **Plataformas:** Android, iOS
+- **Características:**
+  - Gestión en tiempo real de mesas y pedidos
+  - Interfaz intuitiva y rápida
+  - Sincronización con el backend
+  - Autenticación de usuarios
 
-La comunicación entre el Frontend y el Backend se realiza a través de una API desarrollada en **Node.js**, que actúa como capa intermedia entre la aplicación móvil y el servidor principal en **Java**. Esta arquitectura permite una integración flexible, modular y fácilmente escalable.
+#### 2. **Aplicación de Escritorio (C# .NET WPF)**
+- **Propósito:** Herramienta de gestión administrativa y generación de reportes
+- **Target Framework:** .NET 9.0
+- **Características:**
+  - Gestión avanzada de pedidos y pagos
+  - Exportación de datos (Excel con ClosedXML)
+  - Interfaz gráfica moderna (WPF)
+  - Arquitectura MVVM
+  - Inyección de dependencias
 
-## 2. Instalación y Configuración
+**Stack Tecnológico (EZBar-escritorio):**
+```
+.NET 9.0-Windows
+├── CommunityToolkit.Mvvm (8.4.0) - Patrón MVVM
+├── ClosedXML (0.104.2) - Exportación Excel
+├── Microsoft.Extensions.DependencyInjection (9.0.2)
+├── Microsoft.Extensions.Http (9.0.2)
+└── Microsoft.Extensions.Configuration (9.0.2)
+```
 
-### Requisitos Previos
+**Estructura de Carpetas:**
+```
+EZBar-escritorio/
+├── Domain/
+│   └── Models/
+│       ├── Pago.cs          # Modelo de pagos
+│       └── Pedido.cs        # Modelo de pedidos
+├── Infrastructure/
+│   ├── Converters/          # Convertidores WPF
+│   └── Network/
+│       ├── AuthInterceptor.cs   # Interceptor de autenticación
+│       └── IApiService.cs      # Servicio de API
+├── Repositories/            # Acceso a datos
+├── Services/                # Servicios de negocio
+├── ViewModels/              # Lógica de presentación (MVVM)
+├── App.xaml                 # Configuración de aplicación
+├── MainWindow.xaml          # Ventana principal
+└── appsettings.json         # Configuración
+```
+
+#### 3. **Backend (Java)**
+- **Propósito:** Servidor de lógica de negocio y gestión de datos
+- **Stack:** Spring Boot, Java 17+
+- **Responsabilidades:**
+  - API REST para Frontend y App de Escritorio
+  - Autenticación y autorización
+  - Gestión de pedidos, mesas y pagos
+  - Conexión con base de datos
+  - Validaciones de negocio
+
+#### 4. **Base de Datos (MariaDB)**
+- **Propósito:** Almacenamiento persistente de datos
+- **Versión:** 10.x o superior
+- **Entidades principales:**
+  - Usuarios (con roles: Admin, Camarero)
+  - Productos y categorías
+  - Mesas y zonas
+  - Pedidos y líneas de pedido
+  - Pagos
+
+---
+
+## 3. Instalación y Configuración
+
+### ⚙️ Requisitos Previos Generales
 
 Asegúrate de tener instalado:
 
-- **Flutter 3.x**
-- **Java 17 o superior**
-- **MariaDB 10.x o superior**
-- IDE recomendado: Android Studio/VS Code (Frontend), IntelliJ IDEA/Eclipse (Backend)
+- **Java 17 o superior** (para el Backend)
+- **Flutter 3.x** (para el Frontend móvil)
+- **MariaDB 10.x o superior** (base de datos)
+- **.NET 9.0 SDK** (para la aplicación de escritorio)
+- **Node.js y npm** (opcional, para herramientas de desarrollo)
+- **Git** (control de versiones)
 
-### Configuración de la Base de Datos
+**IDEs Recomendados:**
+- Frontend Flutter: Android Studio, VS Code
+- Backend Java: IntelliJ IDEA, Eclipse, VS Code
+- Escritorio .NET: Visual Studio 2022, VS Code
+- Base de Datos: MySQL Workbench, DBeaver
+
+### 🗄️ Configuración de la Base de Datos
+
+#### Instalación de MariaDB
+
+1. **Descargar e instalar MariaDB** desde https://mariadb.org/download/
+
+2. **Crear la base de datos y usuario:**
 
 ```sql
-CREATE DATABASE ezbar;
+-- Conexión como administrador
+CREATE DATABASE IF NOT EXISTS ezbar CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-CREATE USER 'ezbar'@'localhost' IDENTIFIED BY 'tu_contraseña';
-GRANT ALL PRIVILEGES ON ezbar.* TO 'ezbar'@'localhost';
+-- Crear usuario con contraseña segura
+CREATE USER IF NOT EXISTS 'ezbar_user'@'localhost' IDENTIFIED BY 'tu_contraseña_segura';
+
+-- Otorgar permisos
+GRANT ALL PRIVILEGES ON ezbar.* TO 'ezbar_user'@'localhost';
 FLUSH PRIVILEGES;
+
+-- Verificar
+SELECT user, host FROM mysql.user WHERE user='ezbar_user';
 ```
-### Configuración del Proyecto
 
-Para más detalles sobre la instalación y ejecución de cada módulo, consulta sus respectivos README:
+3. **Ejecutar scripts de inicialización** (proporcionados por el Backend)
 
-- **Backend:** [EZBar_Backend](https://github.com/Monti1751/EZBar_Backend/tree/main)
-- **Frontend:** [EZBar_Frontend](https://github.com/Monti1751/EZBar_Frontend/tree/main)
+---
 
-### Roles de Usuario
+### 🚀 Instalación de Cada Componente
 
-- **Administración (Backend):** Gestión de productos, precios y zonas directamente desde la base de datos o herramientas de gestión.  
-- **Camarero (Frontend):** Uso diario de la aplicación móvil para la toma y gestión de pedidos.
+#### **1. Backend (Java - Spring Boot)**
 
-### Funcionalidades Clave
+```bash
+# Clonar o navegar al directorio del backend
+cd EZBar_Backend
+
+# Configurar propiedades de conexión a BD
+# Editar: src/main/resources/application.properties
+# Valores requeridos:
+# spring.datasource.url=jdbc:mysql://localhost:3306/ezbar
+# spring.datasource.username=ezbar_user
+# spring.datasource.password=tu_contraseña_segura
+# server.port=8080
+
+# Compilar y ejecutar (Maven)
+mvn clean install
+mvn spring-boot:run
+
+# O compilar con Gradle
+gradle build
+gradle bootRun
+```
+
+**Verificación:**
+- Acceder a: `http://localhost:8080/swagger-ui.html` (si está disponible)
+- O probar: `http://localhost:8080/api/health`
+
+---
+
+#### **2. Frontend Móvil (Flutter)**
+
+```bash
+# Navegar al directorio del frontend
+cd EZBar_Frontend
+
+# Obtener dependencias
+flutter pub get
+
+# Configurar URL del backend
+# Editar: lib/config/api_config.dart
+# backend_url = 'http://tu-ip-backend:8080'
+
+# Compilar y ejecutar para Android
+flutter run -d android
+
+# O para iOS
+flutter run -d ios
+
+# Compilar APK de producción
+flutter build apk --release
+```
+
+**Requisitos adicionales:**
+- Android SDK 21+ para Android
+- Xcode y CocoaPods para iOS
+- Emulador de Android o dispositivo conectado
+
+---
+
+#### **3. Aplicación de Escritorio (.NET WPF)**
+
+```bash
+# Navegar al directorio de escritorio
+cd EZBar-escritorio
+
+# Restaurar dependencias NuGet
+dotnet restore
+
+# Configurar conexión a Backend
+# Editar: appsettings.json
+# "ApiSettings": {
+#   "BaseUrl": "http://localhost:8080",
+#   "Timeout": 30
+# }
+
+# Compilar en modo Debug
+dotnet build
+
+# Ejecutar
+dotnet run
+
+# Compilar release
+dotnet publish -c Release -o ./bin/Release/net9.0-windows
+```
+
+**Requisitos:**
+- Visual Studio 2022 o VS Code con extensiones C#
+- .NET 9.0 SDK instalado
+- Windows 10 o superior
+
+---
+
+### 🔑 Configuración de Seguridad
+
+#### Autenticación
+
+Cada cliente debe incluir credenciales en los headers HTTP:
+
+```
+Authorization: Bearer <token>
+```
+
+El token se obtiene al hacer login en el endpoint:
+```
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "usuario": "nombre_usuario",
+  "contraseña": "contraseña"
+}
+```
+
+#### Variables de Entorno (.NET)
+
+Crear archivo `.env` o usar `appsettings.json`:
+
+```json
+{
+  "ApiSettings": {
+    "BaseUrl": "http://localhost:8080",
+    "ApiKey": "tu_clave_api",
+    "Timeout": 30
+  },
+  "DatabaseSettings": {
+    "ConnectionString": "Server=localhost;Database=ezbar;User=ezbar_user;Password=tu_contraseña;"
+  }
+}
+```
+
+---
+
+### 👥 Roles de Usuario
+
+El sistema implementa dos roles principales:
+
+| Rol | Permisos | Acceso |
+|-----|----------|--------|
+| **Administrador** | Gestión completa de productos, precios, zonas, usuarios y reportes | Backend + App Escritorio |
+| **Camarero** | Toma de pedidos, gestión de mesas, cierre de cuentas | Frontend Móvil |
+
+---
+
+### ✨ Funcionalidades Clave
 
 - **Gestión de Zonas y Mesas:** Visualización clara de todas las zonas del local (ej. Terraza, Barra, Comedor) y el estado de cada mesa (ocupada, libre, pendiente de pago).  
 - **Creación y Edición de Pedidos:** Capacidad para crear un pedido, añadir productos al ticket, modificar cantidades y añadir notas especiales antes de enviarlo a cocina/barra.  
 - **Cierre de Mesa:** Permite la liquidación del pedido y el marcado de la mesa como libre.
+- **Exportación de Datos:** Generación de reportes en Excel desde la aplicación de escritorio.
+- **Control de Inventario:** Gestión de productos y disponibilidad.
+- **Reportes y Estadísticas:** Análisis de ventas y rendimiento.
 
-### Interfaz de Usuario y Conexión
+---
 
-Una vez que el **Backend (Java)** está activo en `http://localhost:8080`, la aplicación **Frontend (Flutter)** establece la conexión al iniciar.
+## 4. Funcionamiento y Uso de la Aplicación
 
-| Pantalla        | Descripción                                               | Acciones Principales                          |
-|-----------------|-----------------------------------------------------------|-----------------------------------------------|
-| **Inicio/Login** | Autenticación de usuarios con roles definidos.            | `Login` / `Selección de Turno`                |
-| **Mapa de Mesas** | Vista principal que muestra el estado en tiempo real.    | `Seleccionar Mesa` / `Cambiar Zona`           |
-| **Toma de Pedido** | Interfaz para seleccionar productos y configurar tickets.| `Añadir Producto` / `Enviar a Cocina` / `Cerrar Cuenta` |
+### 🏪 Flujo General de Operación
 
-> **Nota:** Si el Backend no está corriendo, la aplicación Frontend mostrará un error de conexión y no permitirá la autenticación.
+EZBar está diseñado para agilizar el trabajo en hostelería, permitiendo gestionar mesas, pedidos y zonas de forma rápida e intuitiva:
 
-## 3. Funcionamiento y Uso de la Aplicación
+```
+┌─────────────┐
+│   CAMARERO  │
+└──────┬──────┘
+       │ (1) Login en App Móvil (Flutter)
+       │
+┌──────▼──────────────────────────────────────────┐
+│  Frontend Móvil (Flutter)                        │
+│  - Selecciona zona (Terraza, Barra, Comedor)    │
+│  - Visualiza mapa de mesas                       │
+│  - Selecciona mesa                               │
+└──────┬──────────────────────────────────────────┘
+       │ (2) Solicita datos de mesa
+       │
+┌──────▼──────────────────────────────────────────┐
+│  Backend (Java - Spring Boot)                    │
+│  - Valida token de autenticación                 │
+│  - Procesa solicitud                             │
+│  - Accede a datos en base de datos               │
+└──────┬──────────────────────────────────────────┘
+       │ (3) Consulta datos
+       │
+┌──────▼──────────────────────────────────────────┐
+│  Base de Datos (MariaDB)                         │
+│  - Almacena estado de mesas                      │
+│  - Registra pedidos                              │
+│  - Guarda transacciones de pago                  │
+└──────────────────────────────────────────────────┘
+```
 
-EZBar está diseñado para agilizar el trabajo en hostelería, permitiendo gestionar mesas, pedidos y zonas de forma rápida e intuitiva.
+### 📱 Uso del Frontend Móvil (Flutter)
 
-### Flujo General de Uso
+**Pantallas Principales:**
 
-1. **Inicio de sesión:**  
-   El usuario accede con sus credenciales y selecciona su turno.
+| Pantalla | Función | Acciones |
+|----------|---------|----------|
+| **Login** | Autenticación de usuario | Ingresar credenciales, seleccionar turno |
+| **Zonas** | Seleccionar área del local | Cambiar entre Terraza, Barra, Comedor |
+| **Mapa de Mesas** | Vista del estado de mesas | Seleccionar mesa, ver pedidos pendientes |
+| **Toma de Pedido** | Crear nuevo pedido | Buscar productos, agregar cantidades |
+| **Edición de Pedido** | Modificar pedido existente | Cambiar cantidades, agregar notas |
+| **Cierre de Cuenta** | Procesar pago | Calcular total, registrar pago |
 
-2. **Selección de zona:**  
-   El camarero elige la zona del local (Terraza, Barra, Comedor, etc.).
+**Estados de Mesa:**
+- 🟢 **Libre:** Mesa disponible para ocupar
+- 🔵 **Ocupada:** Mesa con cliente, pedido en progreso
+- 🟠 **Pendiente Pago:** Pedido listo, esperando cobro
+- 🔴 **Bloqueada:** Mesa no disponible (mantenimiento)
 
-3. **Gestión de mesas:**  
-   Desde el mapa visual puede ver el estado de cada mesa:
-   - Libre  
-   - Ocupada  
-   - Pendiente de pago  
+---
 
-4. **Creación de pedidos:**  
-   Al seleccionar una mesa, el camarero puede:
-   - Añadir productos  
-   - Modificar cantidades  
-   - Añadir notas especiales  
-   - Enviar el pedido a cocina/barra  
+### 💻 Uso de la Aplicación de Escritorio (.NET WPF)
 
-5. **Cierre de mesa:**  
-   Una vez finalizado el servicio, se procede al cobro y la mesa vuelve a estado libre.
+**Funcionalidades de Administración:**
 
-### Comunicación con el Sistema
+1. **Gestión de Productos**
+   - Crear, editar y eliminar productos
+   - Asignar categorías y precios
+   - Controlar disponibilidad
 
-- El **Frontend (Flutter)** envía las acciones del usuario a la **API en Node.js**.  
-- La API procesa la petición y se comunica con el **Backend en Java**, que gestiona la lógica y la base de datos.  
-- La respuesta vuelve al Frontend, actualizando el estado de la aplicación en tiempo real.
+2. **Gestión de Mesas y Zonas**
+   - Configurar distribución del local
+   - Asignar capacidad de mesas
+   - Definir zonas de servicio
 
-### Objetivo del Funcionamiento
+3. **Reportes**
+   - Exportar pedidos a Excel (ClosedXML)
+   - Análisis de ventas por período
+   - Estadísticas de productos más vendidos
+   - Reportes de pagos
 
-El sistema está diseñado para:
-- Reducir tiempos de espera.  
-- Minimizar errores en pedidos.  
-- Facilitar el control de mesas y zonas.  
-- Mejorar la coordinación entre camareros y cocina/barra.
+4. **Configuración del Sistema**
+   - Gestión de usuarios y roles
+   - Configuración de servidores
+   - Parámetros de operación
 
-## 4. Estado del Proyecto
+**Ejemplo de Exportación Excel:**
+```csharp
+// Desde el código, usando ClosedXML
+using (var workbook = new XLWorkbook())
+{
+    var worksheet = workbook.Worksheets.Add("Pedidos");
+    // Llenar datos de pedidos
+    worksheet.Cell("A1").Value = "ID Pedido";
+    worksheet.Cell("B1").Value = "Mesa";
+    worksheet.Cell("C1").Value = "Total";
+    
+    workbook.SaveAs("Reporte_Pedidos.xlsx");
+}
+```
 
-El proyecto **EZBar** se encuentra actualmente en **versión Alpha**, lo que significa que está en fase de pruebas iniciales.  
-Durante esta etapa se están validando las funcionalidades principales:
+---
 
-- Conexión entre **Frontend (Flutter)** y **Backend (Java)** mediante servicios REST.  
-- Gestión básica de zonas, mesas y pedidos.  
-- Integración con la base de datos **MariaDB**.  
+### 🔗 Integración Backend - Base de Datos
 
-> Próximas fases incluirán mejoras de rendimiento, ampliación de funcionalidades y preparación para una versión Beta.
-## 5. Autores
+**API REST del Backend (Java):**
+
+```
+POST   /api/auth/login              - Autenticar usuario
+GET    /api/mesas                   - Obtener estado de mesas
+GET    /api/mesas/{id}/pedidos      - Obtener pedidos de una mesa
+POST   /api/pedidos                 - Crear nuevo pedido
+PATCH  /api/pedidos/{id}            - Actualizar pedido
+POST   /api/pagos                   - Registrar pago
+GET    /api/productos               - Listar productos disponibles
+GET    /api/reportes/ventas         - Generar reportes de ventas
+```
+
+**Modelos de Datos Principales:**
+
+```
+Usuarios
+├── id_usuario
+├── nombre
+├── email
+├── contraseña (hash)
+├── rol (Admin, Camarero)
+└── estado
+
+Mesas
+├── id_mesa
+├── número_mesa
+├── id_zona
+├── capacidad
+├── estado (libre, ocupada, pendiente_pago)
+└── última_actualización
+
+Pedidos
+├── id_pedido
+├── id_mesa
+├── id_usuario
+├── fecha_hora
+├── estado (pendiente, preparando, listo, servido, pagado)
+├── total
+└── notas
+
+Líneas_Pedido
+├── id_línea
+├── id_pedido
+├── id_producto
+├── cantidad
+└── subtotal
+
+Pagos
+├── id_pago
+├── id_pedido
+├── monto
+├── método_pago (efectivo, tarjeta, etc.)
+└── fecha_hora_pago
+```
+
+---
+
+### 🔄 Flujo Detallado de Pedido
+
+```
+1. INICIO DE SESIÓN
+   ├─ Usuario abre app
+   └─ Ingresa credenciales
+        │
+2. AUTENTICACIÓN
+   ├─ Backend valida usuario
+   ├─ Genera token JWT
+   └─ Frontend almacena token
+        │
+3. SELECCIÓN DE MESA
+   ├─ Frontend obtiene mesas disponibles
+   ├─ Usuario selecciona mesa
+   └─ Marca mesa como "ocupada"
+        │
+4. TOMA DE PEDIDO
+   ├─ Frontend lista productos
+   ├─ Usuario selecciona productos y cantidades
+   ├─ Agrega notas especiales (sin picante, sin cebolla, etc.)
+   └─ Revisa total
+        │
+5. ENVÍO A COCINA/BARRA
+   ├─ Pedido se marca como "preparando"
+   ├─ Cocina/Barra recibe notificación
+   └─ Comienza preparación
+        │
+6. SERVICIO
+   ├─ Pedido se marca como "listo"
+   ├─ Camarero entrega a cliente
+   └─ Marca como "servido"
+        │
+7. CIERRE DE CUENTA
+   ├─ Calcula total final
+   ├─ Selecciona método de pago
+   ├─ Backend registra pago
+   └─ Marca mesa como "libre"
+```
+
+---
+
+### ⚡ Optimizaciones y Ventajas
+
+- **Tiempo Real:** Sincronización instantánea de cambios
+- **Offline-Ready:** (en desarrollo) Funcionalidad parcial sin conexión
+- **Responsive:** UI adaptativa para diferentes tamaños de pantalla
+- **Seguridad:** Autenticación JWT y encriptación de datos sensibles
+- **Escalabilidad:** Arquitectura modular preparada para crecimiento
+
+---
+
+## 5. Estado del Proyecto
+
+El proyecto **EZBar** se encuentra actualmente en **versión Alpha**, lo que significa que está en fase de pruebas iniciales.
+
+**Componentes Completados:**
+- ✅ Arquitectura de proyecto base
+- ✅ Modelos de dominio (Pedidos, Pagos, Mesas)
+- ✅ Conexión a Base de Datos
+- ✅ Autenticación JWT
+- ✅ API REST (endpoints básicos)
+- ✅ Interfaz WPF (app de escritorio)
+- ✅ Inyección de dependencias
+
+**En Desarrollo:**
+- 🔄 Frontend Flutter completo
+- 🔄 Sincronización en tiempo real
+- 🔄 Sistema de notificaciones
+- 🔄 Reportes avanzados
+
+**Planificado para Futuras Versiones:**
+- 📋 Modo offline
+- 📋 Integración con sistemas de pago (Stripe, PayPal)
+- 📋 Aplicación web (React/Angular)
+- 📋 Análisis predictivo con IA
+- 📋 Sistema de reservas
+- 📋 Programa de fidelización
+
+---
+
+## 6. Autores
 
 Este proyecto ha sido desarrollado por:
 
@@ -150,5 +599,130 @@ Este proyecto ha sido desarrollado por:
   - [MiguelJimenezSerrano](https://github.com/MiguelJimenezSerrano)
 
 - **Miguel Duque**  
-  - [El-Mig](https://github.com/El-Mig)  
+  - [El-Mig](https://github.com/El-Mig)
+
+---
+
+## 📚 Recursos Adicionales
+
+### Documentación Oficial
+- [Flutter Documentation](https://flutter.dev/docs)
+- [Spring Boot Documentation](https://spring.io/projects/spring-boot)
+- [.NET Documentation](https://docs.microsoft.com/en-us/dotnet/)
+- [MariaDB Documentation](https://mariadb.com/docs/)
+
+### Stack Tecnológico Detallado
+
+**Frontend (Flutter)**
+- Framework: Flutter 3.x
+- Lenguaje: Dart
+- Gestión de estado: Provider / Riverpod
+- Persistencia local: Hive / Sqflite
+
+**Backend (Java)**
+- Framework: Spring Boot 3.x
+- Lenguaje: Java 17+
+- ORM: JPA/Hibernate
+- Seguridad: Spring Security + JWT
+
+**Desktop (.NET)**
+- Framework: .NET 9.0
+- Patrón: MVVM
+- UI: WPF
+- Librerías clave:
+  - CommunityToolkit.Mvvm
+  - ClosedXML (reportes Excel)
+  - Microsoft.Extensions.* (DI, Config)
+
+**Base de Datos**
+- Sistema: MariaDB 10.x+
+- Lenguaje: SQL
+- Herramientas: MySQL Workbench, DBeaver
+
+---
+
+## 🐛 Solución de Problemas
+
+### El Frontend no se conecta al Backend
+
+**Síntomas:** Error de conexión al intentar hacer login
+
+**Soluciones:**
+1. Verificar que el Backend está ejecutándose en `http://localhost:8080`
+2. Comprobar la URL configurada en `api_config.dart` (Frontend)
+3. Verificar firewall y puertos abiertos
+4. Revisar logs del Backend en `logs/` o consola
+
+```bash
+# Comprobar que el puerto está en uso
+netstat -ano | findstr :8080  # Windows
+lsof -i :8080                  # macOS/Linux
+```
+
+### Error de autenticación
+
+**Síntomas:** "Invalid credentials" o token expirado
+
+**Soluciones:**
+1. Verificar credenciales de usuario en BD
+2. Comprobar que el usuario tiene rol asignado
+3. Limpiar cache de tokens: borrar carpeta `shared_preferences` (Flutter)
+
+### Problemas con la base de datos
+
+**Síntomas:** "Connection refused" o "Access denied"
+
+**Soluciones:**
+1. Verificar que MariaDB está en ejecución
+2. Comprobar credenciales en `application.properties`
+3. Verificar permisos del usuario en MariaDB
+
+```sql
+-- Verificar usuario y permisos
+SELECT user, host, authentication_string FROM mysql.user WHERE user='ezbar_user';
+SHOW GRANTS FOR 'ezbar_user'@'localhost';
+```
+
+### Problemas de rendimiento
+
+**Síntomas:** Aplicación lenta, demoras en cargas
+
+**Soluciones:**
+1. Revisar tamaño de tabla de pedidos (archivar datos antiguos)
+2. Agregar índices en columnas frecuentemente consultadas
+3. Optimizar consultas SQL
+4. Aumentar memoria JVM del Backend
+
+---
+
+## 🤝 Contribuciones
+
+Para contribuir al proyecto:
+
+1. Fork el repositorio
+2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir un Pull Request
+
+---
+
+## 📝 Licencia
+
+Este proyecto está bajo licencia [Especificar licencia: MIT, Apache 2.0, etc.]
+
+Para más información, consulta el archivo `LICENSE`.
+
+---
+
+## 📞 Contacto y Soporte
+
+- **Issues:** Reportar problemas en [GitHub Issues](https://github.com/Monti1751/EZBar_app/issues)
+- **Discussiones:** Participar en [GitHub Discussions](https://github.com/Monti1751/EZBar_app/discussions)
+- **Email:** [Especificar contacto]
+
+---
+
+**Última actualización:** Mayo 2026  
+**Versión:** 1.0.0
 
